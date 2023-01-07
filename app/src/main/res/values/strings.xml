@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">test</string>
+    <string name="user">user</string>
+    <string name="name_too_short">Name is too short</string>
+    <string name="password_too_short">password is too short</string>
+    <string name="password">password</string>
+    <string name="name_required">name is required</string>
+    <string name="password_required">password is required</string>
 </resources>
