@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -27,85 +28,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 @Composable
 fun LoginWindow() {
 
-    val context = LocalContext.current
     val viewModel: LoginAutoViewModel = hiltViewModel()
-    val user by viewModel.userEdit.collectAsStateWithLifecycle()
-    val password by viewModel.passwordEdit.collectAsStateWithLifecycle()
-    val userFocusRequester = remember { FocusRequester() }
 
-    val content = @Composable {
-        Column() {
-
-            RequireTextField(
-                modifier = Modifier
-                    .focusRequester(userFocusRequester)
-                    .onFocusChanged { focusState ->
-                        viewModel.onTextFieldFocusChanged(
-                            key = FocusedTextFieldKey.USER,
-                            isFocused = focusState.isFocused
-                        )
-                    }
-        ,
-                labelResId = R.string.user,
-                keyboardOptions = remember {
-                    KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Next
-                    )
-                },
-                inputWrapper = user,
-                onValueChange = viewModel::onNameEntered,
-                onImeKeyAction = viewModel::onNameImeActionClick
-            )
-            RequireTextField(
-                modifier = Modifier
-                    .focusRequester(userFocusRequester)
-                    .onFocusChanged { focusState ->
-                        viewModel.onTextFieldFocusChanged(
-                            key = FocusedTextFieldKey.PASSWORD,
-                            isFocused = focusState.isFocused
-                        )
-                    }
-                ,
-                inputWrapper = password,
-                onValueChange = viewModel::onPasswordEntered,
-                onImeKeyAction = viewModel::onNameImeActionClick,
-                labelResId = R.string.password
-
-            )
+    when (viewModel.loginState.value) {
+        LoginState.ShowLogin -> {
+            ShowLoginScreen()
         }
-    }
-
-    AlertDialog(
-        onDismissRequest = {},
-        confirmButton = { Button(onClick = {
-            Log.d("userpassword", user.value + " " + password.value )
-            val user = viewModel.user(user.value).
-        },
-            enabled = InputValidator.getUserErrorOrNull(user.value) == null
-                    && InputValidator.getPasswordErrorOrNull(password.value) == null
-        ) { Text(text = "Login") } },
-        modifier = Modifier,
-        dismissButton = { Button(onClick = {
-            Log.d("onDismissRequest",context.findActivity().toString() + " finish")
-            context.findActivity()?.finish()
-        }) {
-            Text("Cancel")
-        } },
-        title = { Text(text = "Login") },
-        text =  content,
-        shape = MaterialTheme.shapes.medium,
-        backgroundColor = MaterialTheme.colors.surface,
-        contentColor = contentColorFor(backgroundColor),
-        properties = DialogProperties() )
-
-}
-
-fun Context.findActivity(): ComponentActivity? {
-    return when (this) {
-        is ComponentActivity -> this
-        is ContextWrapper -> baseContext.findActivity()
-        else -> null
+        null -> TODO()
     }
 }
 
