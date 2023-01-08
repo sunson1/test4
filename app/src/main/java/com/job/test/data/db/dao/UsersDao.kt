@@ -19,4 +19,7 @@ interface UsersDao {
     @Update
     fun update(usersEntity: UsersEntity)
 
+    @Query("select * from users where name=:name and password=:password")
+    suspend fun get(name: String, password: String) : UsersEntity
+
 }

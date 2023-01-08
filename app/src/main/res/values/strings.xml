@@ -6,4 +6,7 @@
     <string name="password">password</string>
     <string name="name_required">name is required</string>
     <string name="password_required">password is required</string>
+    <string name="retype_password">retype password</string>
+    <string name="main_screen">profile</string>
+    <string name="webview_screen">webview_screen</string>
 </resources>
