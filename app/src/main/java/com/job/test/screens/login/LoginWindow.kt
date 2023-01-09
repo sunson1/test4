@@ -1,12 +1,12 @@
 package com.job.test
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.job.test.screens.login.LoginState
+import com.job.test.screens.login.LoginViewModel
 
 @Composable
 fun LoginWindow() {

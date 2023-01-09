@@ -1,7 +1,11 @@
-package com.job.test
+package com.job.test.screens.login
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.job.test.FocusedTextFieldKey
+import com.job.test.ScreenEvent
+import com.job.test.screens.common.InputValidator
+import com.job.test.screens.common.InputWrapper
 import com.job.test.data.db.entities.UsersEntity
 import com.job.test.data.repository.UserRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel

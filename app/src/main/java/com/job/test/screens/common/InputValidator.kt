@@ -1,4 +1,6 @@
-package com.job.test
+package com.job.test.screens.common
+
+import com.job.test.R
 
 object InputValidator {
 

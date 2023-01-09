@@ -1,4 +1,4 @@
-package com.job.test
+package com.job.test.screens.common
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

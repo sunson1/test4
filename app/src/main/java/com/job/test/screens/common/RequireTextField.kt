@@ -17,6 +17,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.job.test.screens.common.InputWrapper
 
 @Composable
 fun RequireTextField(

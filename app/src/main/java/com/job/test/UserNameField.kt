@@ -12,6 +12,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.job.test.screens.login.LoginViewModel
 
 @Composable
 fun UserNameField() {
