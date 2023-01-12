@@ -6,7 +6,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.job.test.screens.common.InputWrapper
 import com.job.test.screens.login.LoginViewModel
 
@@ -14,7 +13,7 @@ import com.job.test.screens.login.LoginViewModel
 fun PasswordField(password: InputWrapper, labelResId: Int, onValueChange: OnValueChange ) {
 
     val userFocusRequester = remember { FocusRequester() }
-    val loginViewModel: LoginViewModel = hiltViewModel()
+    val loginViewModel: LoginViewModel = oneInstanceViewModel()
 
     RequireTextField(
         modifier = Modifier

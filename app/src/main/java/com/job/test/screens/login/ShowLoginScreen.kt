@@ -15,6 +15,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import com.job.test.screens.common.InputValidator
 import com.job.test.screens.login.LoginState
 import com.job.test.screens.login.LoginViewModel
@@ -22,8 +23,8 @@ import com.job.test.screens.login.LoginViewModel
 @Composable
 fun ShowLoginScreen() {
 
-    val userFocusRequester = remember { FocusRequester() }
-    val loginViewModel: LoginViewModel = hiltViewModel()
+    //val userFocusRequester = remember { FocusRequester() }
+    val loginViewModel: LoginViewModel = oneInstanceViewModel()
     val user by loginViewModel.userEdit.collectAsState()
     val password by loginViewModel.passwordEdit.collectAsState()
     val retypePassword by loginViewModel.retypePasswordEdit.collectAsState()
@@ -72,3 +73,8 @@ fun Context.findActivity(): ComponentActivity? {
     }
 }
 
+@Composable
+inline fun <reified VM : ViewModel>  oneInstanceViewModel(): VM {
+    val lifecycleScope = LocalContext.current.findActivity()!!
+    return hiltViewModel(lifecycleScope)
+}

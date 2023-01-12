@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -16,10 +15,8 @@ import kotlinx.coroutines.FlowPreview
 @Composable
 fun WebViewScreen(navController: NavHostController) {
 
-    if (StoreOwner.viewModelStoreOwner == null)
-        StoreOwner.viewModelStoreOwner = LocalViewModelStoreOwner.current
 
-   val mainViewModel : MainViewModel = hiltViewModel(StoreOwner.viewModelStoreOwner!!)
+   val mainViewModel : MainViewModel = oneInstanceViewModel()
 
     AndroidView(
         factory = {
